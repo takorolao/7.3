@@ -1,3 +1,7 @@
 from django.shortcuts import render
+from .models import Parent
 
-# Create your views here.
+def home(request):
+    data = Parent.objects.all
+    return render(request, 'home.html',{"data" : data} )
+

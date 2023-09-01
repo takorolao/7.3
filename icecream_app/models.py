@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import RegexValidator
 
 class IceCreamShop(models.Model):
     name = models.CharField(max_length=100)
@@ -20,9 +21,18 @@ class IceCream(models.Model):
 
 class Parent(models.Model):
     name = models.CharField(max_length=50)
+    a = models.IntegerField(validators=[RegexValidator(r"^[0-9]?$")])   
+    b = models.IntegerField() 
 
     def __str__(self):
         return self.name
+    
+    def newmethod(self):
+        return str(self.pk)  + " " + self.name
+    
+    def sum(self):
+        return self.a + self.b
+
 
 class Child(models.Model):
     name = models.CharField(max_length=50)
